@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "ai-training-client-side-solution",
+    "id": "045bff58-d968-4dd6-923f-77087ae4e2ee",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+  
+    "metadata": {
+      "shortDescription": {
+        "default": "AiTraining description"
+      },
+      "longDescription": {
+        "default": "AiTraining description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "ai-training Feature",
+        "description": "The feature that activates elements of the ai-training solution.",
+        "id": "820c90c1-81a9-4b3a-8a53-2835e4d2faa2",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/ai-training.sppkg"
+  }
+}
