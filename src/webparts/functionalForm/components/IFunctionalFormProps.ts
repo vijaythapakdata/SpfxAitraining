@@ -4,4 +4,5 @@ export interface IFunctionalFormProps {
   environmentMessage: string;
   hasTeamsContext: boolean;
   userDisplayName: string;
+  siteurl:string;
 }

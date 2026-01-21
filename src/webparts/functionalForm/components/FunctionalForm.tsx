@@ -2,6 +2,11 @@ import * as React from 'react';
 import { IFunctionalFormProps } from './IFunctionalFormProps';
 import ButtonFile from './ButtonFile';
 import { PrimaryButton } from '@fluentui/react';
+import CounterApp from './Counter';
+import InputForms from './InputForm';
+import UseEffectHooks from './Useeffecfile';
+import UseMemoHooks from './UseMemoHooks';
+import UseCallBackHooks from './UseCallBackhooks';
 
 const FunctionalForm :React.FC<IFunctionalFormProps>=(props)=>{
 
@@ -95,6 +100,15 @@ switch(day){
     {props.userDisplayName}
     <ButtonFile/>
     <PrimaryButton text="Click Here" onClick={varUnderstandting}/>
+
+    <CounterApp/>
+    <br/>
+    <br/>
+    <InputForms/>
+    <UseEffectHooks/>
+    <UseMemoHooks/>
+    <UseCallBackHooks/>
+    {props.siteurl}
     </>
   )
 }
