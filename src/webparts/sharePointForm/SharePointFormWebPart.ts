@@ -9,20 +9,29 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'SharePointFormWebPartStrings';
 import SharePointForm from './components/SharePointForm';
 import { ISharePointFormProps } from './components/ISharePointFormProps';
-
+import GetChoiceValueClassApi from '../../CommonMethods/ChoiceServiceApi';
 export interface ISharePointFormWebPartProps {
   description: string;
 }
 
 export default class SharePointFormWebPart extends BaseClientSideWebPart<ISharePointFormWebPartProps> {
+  private choiceClassService:GetChoiceValueClassApi
+protected async onInit(): Promise<void> {
+  this.choiceClassService=new GetChoiceValueClassApi(this.context);
+  return super.onInit();
+}
 
-
-  public render(): void {
+  public async render(): Promise<void> {
     const element: React.ReactElement<ISharePointFormProps> = React.createElement(
       SharePointForm,
       {
     context:this.context,
-    siteurl:this.context.pageContext.web.absoluteUrl
+    siteurl:this.context.pageContext.web.absoluteUrl,
+    dropdownoptions:await this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Department"),
+    genderoptions:this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Gender"),
+    skillsoptions:this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Skills"),
+    citiesoptions:this.choiceClassService.getLookupChoices()
+
       }
     );
 

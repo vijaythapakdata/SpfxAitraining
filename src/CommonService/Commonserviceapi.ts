@@ -19,7 +19,13 @@ Age:parseInt(formData.Age),
 Address:formData.FullAddress,
 Salary:parseFloat(formData.Salary),
 Permission:formData.Permission,
-Score:formData.Score
+Score:formData.Score,
+AdminId:formData.AdminId,
+ManagerId:{results:formData.ManagerId},
+Department:formData.Department,
+Gender:formData.Gender,
+Skills:{results:formData.Skills},
+CityId:formData.City
 });
 return items;
     }
