@@ -6,10 +6,12 @@ import { ISharePointFormState } from '../../../CommonMethods/ISharePointFormStat
 import { CommonServiceApiClass } from '../../../CommonService/Commonserviceapi';
 import {Dialog} from'@microsoft/sp-dialog';
 import {sp} from'@pnp/sp/presets/all';
-import {  Dropdown, IDropdownOption, PrimaryButton, Slider, TextField, Toggle } from '@fluentui/react';
+import {  ChoiceGroup, DatePicker, Dropdown, PrimaryButton, Slider, TextField, Toggle } from '@fluentui/react';
 import {  PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import { handleAdminPicker,handleManagerPicker } from '../../../CommonMethods/PeoplePickerHandler';
-
+import { handleSkillsChange } from '../../../CommonMethods/onSkillsChangeHandler';
+import { DateFormate, DatePickerStrings } from '../../../CommonMethods/DateFormattting';
+import { handleAttachment } from '../../../CommonMethods/AttachmentHandler';
 const SharePointForm :React.FC<ISharePointFormProps>=(props)=>{
   const [formdata,setFormData]=useState<ISharePointFormState>({
     Name:"",
@@ -26,8 +28,10 @@ const SharePointForm :React.FC<ISharePointFormProps>=(props)=>{
     Skills:[],
     Department:"",
     Gender:"",
-    City:""
+    City:"",
+    DOB:""
   });
+  const [attachments,setAttachments]=React.useState<File[]>([]);
   React.useEffect(()=>{
     sp.setup({
       spfxContext:props.context as any
@@ -38,6 +42,9 @@ const createFormData=async()=>{
   try{
 const _service =new CommonServiceApiClass(props.siteurl);
 const result=await _service.addItems(formdata);
+const itemId=result.data.Id;
+await _service.uploadAttachments(itemId,attachments)
+
 Dialog.alert(`Item created with id :${result.data.Id}`);
 console.log(result);
 setFormData({
@@ -55,8 +62,10 @@ setFormData({
     Skills:[],
     Department:"",
     Gender:"",
-    City:""
+    City:"",
+    DOB:""
 });
+setAttachments([]);
   }
   catch(err){
 console.log("Error while creating item",err);
@@ -69,12 +78,7 @@ const handleSubmit=React.useCallback((field:keyof ISharePointFormState,value:str
   setFormData(event=>({...event,[field]:value}))
 },[]);
 
-const onskillsChange=(event:React.ChangeEvent<HTMLInputElement>,options:IDropdownOption):void=>{
-  
-    const selectedkeys=options.selected?[...formdata.Skills, options?.key as string]:
-    formdata.Skills.filter((key:any)=>key!==options.key);
-    setFormData(prev=>({...prev,Skills:selectedkeys}))
-}
+
   return(
     <>
     <TextField
@@ -144,12 +148,12 @@ const onskillsChange=(event:React.ChangeEvent<HTMLInputElement>,options:IDropdow
     selectedKey={formdata.Department}
     onChange={(_,options)=>handleSubmit("Department",options?.key as string)}
     />
-    {/* <ChoiceGroup
+    <ChoiceGroup
     label='Gender'
     options={props.genderoptions}
     selectedKey={formdata.Gender}
         onChange={(_,options)=>handleSubmit("Gender",options?.key as string)}
-    /> */}
+    />
     <Dropdown
     label='City'
     options={props.citiesoptions}
@@ -162,8 +166,22 @@ const onskillsChange=(event:React.ChangeEvent<HTMLInputElement>,options:IDropdow
     options={props.skillsoptions}
     placeholder='--select--'
  defaultSelectedKeys={formdata.Skills}
-    onChange={onskillsChange}
+    onChange={(_,opt)=>handleSkillsChange(opt!,formdata,setFormData)}
     multiSelect
+    />
+    {/* DatePicker */}
+    <DatePicker
+    label="DOB"
+    
+    formatDate={DateFormate}
+    strings={DatePickerStrings}
+    onSelectDate={(date)=>setFormData(prev=>({...prev,DOB:date}))}
+    />
+    <input
+    type='file'
+    multiple
+  title='Upload file'
+    onChange={(e)=>handleAttachment(e,setAttachments)}
     />
      <TextField
     label='Full Address'
@@ -179,7 +197,7 @@ const onskillsChange=(event:React.ChangeEvent<HTMLInputElement>,options:IDropdow
     onClick={createFormData}
     iconProps={{iconName:'save'}}
     />
-    {props.skillsoptions}
+
     </>
   )
 }

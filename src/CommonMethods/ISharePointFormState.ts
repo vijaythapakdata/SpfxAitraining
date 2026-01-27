@@ -14,4 +14,8 @@ export interface ISharePointFormState{
     Gender:string;
     City:any;
     Skills:any
+    DOB?:any;
+    Attachments?:any;
+   
 }
+

@@ -28,9 +28,9 @@ protected async onInit(): Promise<void> {
     context:this.context,
     siteurl:this.context.pageContext.web.absoluteUrl,
     dropdownoptions:await this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Department"),
-    genderoptions:this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Gender"),
-    skillsoptions:this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Skills"),
-    citiesoptions:this.choiceClassService.getLookupChoices()
+    genderoptions: await this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Gender"),
+    skillsoptions: await this.choiceClassService.getChoiceValues(this.context.pageContext.web.absoluteUrl,"Skills"),
+    citiesoptions: await this.choiceClassService.getLookupChoices()
 
       }
     );
