@@ -4,5 +4,5 @@ export const handleAttachment=
     if(!files) return;
     //convert fileList-File[]
     const newFiles=Array.from(files);
-    setAttachement(prev=>({...prev,...newFiles}));
+    setAttachement(prev=>[...prev,...newFiles])
 }
