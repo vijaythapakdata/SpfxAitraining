@@ -31,7 +31,8 @@ const ValidationSchema=Yup.object().shape({
   endDate:Yup.date().required("End Date is required"),
   projectName:Yup.string().required("Project name is required"),
   phoneNumber:Yup.string().required("Phone number is required").matches(/^[0-9]{10}$/,"phone number must be 10 digits"),
-  // emailAddress:Yup.string().email("Invalid email").required("Email address is required") hotmail.com,gmail.com, yahoo.com , onmicrosoft.com
+  // emailAddress:Yup.string().email("Invalid email").required("Email address is required") hotmail.com,gmail.com,
+  //  yahoo.com , onmicrosoft.com
 
   emailAddress:Yup.string().email("Invalid email format").required("Email is required")
   .test("Invalid=-domains","Personal email domains (hotmail.com,gmail.com, yahoo.com , onmicrosoft.com) are not allowed",

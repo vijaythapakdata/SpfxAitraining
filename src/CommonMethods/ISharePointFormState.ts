@@ -19,3 +19,14 @@ export interface ISharePointFormState{
    
 }
 
+//state for table 
+
+export interface IPaginatedItemsState{
+    Key:number;
+    Title:string;
+    EmailAddress:string;
+    Age:number;
+    Admin:string;
+    City:string;
+}
+
