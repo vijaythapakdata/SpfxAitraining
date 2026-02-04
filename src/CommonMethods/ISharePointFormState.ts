@@ -30,3 +30,14 @@ export interface IPaginatedItemsState{
     City:string;
 }
 
+export interface ILargeListServiceState{
+    Title:string;
+}
+
+export interface IUserInfo{
+    id:string;
+    displayName:string;
+    mail:string;
+    jobTitle?:string;
+    department?:string;
+}
