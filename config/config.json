@@ -57,6 +57,22 @@
           "manifest": "./src/webparts/getAllusers/GetAllusersWebPart.manifest.json"
         }
       ]
+    },
+    "live-persona-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/livePersona/LivePersonaWebPart.js",
+          "manifest": "./src/webparts/livePersona/LivePersonaWebPart.manifest.json"
+        }
+      ]
+    },
+    "accordian-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/accordianWebPart/AccordianWebPartWebPart.js",
+          "manifest": "./src/webparts/accordianWebPart/AccordianWebPartWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -68,6 +84,8 @@
     "FormikValidationWebPartStrings": "lib/webparts/formikValidation/loc/{locale}.js",
     "PaginatedtableWebPartStrings": "lib/webparts/paginatedtable/loc/{locale}.js",
     "LargeListCodeWebPartStrings": "lib/webparts/largeListCode/loc/{locale}.js",
-    "GetAllusersWebPartStrings": "lib/webparts/getAllusers/loc/{locale}.js"
+    "GetAllusersWebPartStrings": "lib/webparts/getAllusers/loc/{locale}.js",
+    "LivePersonaWebPartStrings": "lib/webparts/livePersona/loc/{locale}.js",
+    "AccordianWebPartWebPartStrings": "lib/webparts/accordianWebPart/loc/{locale}.js"
   }
 }

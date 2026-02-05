@@ -41,3 +41,11 @@ export interface IUserInfo{
     jobTitle?:string;
     department?:string;
 }
+export interface AccordianState{
+    Title:string;
+    Question:string;
+    Response:string;
+    Langue:{
+        Title:string
+    }
+}
