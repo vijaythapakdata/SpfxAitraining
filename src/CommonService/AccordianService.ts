@@ -13,7 +13,7 @@ export default class AccordianService{
 
 public async getAccordianItems():Promise<AccordianState[]>{
     try{
-const items=await this.web.lists.getByTitle(ListNames.FAQList).items.select("Title","Questions","Response","Langue/Title")
+const items=await this.web.lists.getByTitle(ListNames.FAQList).items.select("Title","Question","Response","Langue/Title")
 .expand("Langue").orderBy("Created",false).get();
 return items;
 

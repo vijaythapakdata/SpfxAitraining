@@ -73,6 +73,14 @@
           "manifest": "./src/webparts/accordianWebPart/AccordianWebPartWebPart.manifest.json"
         }
       ]
+    },
+    "react-routes-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reactRoutes/ReactRoutesWebPart.js",
+          "manifest": "./src/webparts/reactRoutes/ReactRoutesWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -86,6 +94,7 @@
     "LargeListCodeWebPartStrings": "lib/webparts/largeListCode/loc/{locale}.js",
     "GetAllusersWebPartStrings": "lib/webparts/getAllusers/loc/{locale}.js",
     "LivePersonaWebPartStrings": "lib/webparts/livePersona/loc/{locale}.js",
-    "AccordianWebPartWebPartStrings": "lib/webparts/accordianWebPart/loc/{locale}.js"
+    "AccordianWebPartWebPartStrings": "lib/webparts/accordianWebPart/loc/{locale}.js",
+    "ReactRoutesWebPartStrings": "lib/webparts/reactRoutes/loc/{locale}.js"
   }
 }
